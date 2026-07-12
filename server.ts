@@ -37,13 +37,13 @@ app.post('/api/explain', async (req, res) => {
     }
 
     const lineCount = code.split(/\r\n|\r|\n/).length
-    if (lineCount > 50) {
-      res.status(400).json({ error: 'Code exceeds the maximum limit of 50 lines.' })
+    if (lineCount > 100) {
+      res.status(400).json({ error: 'Code exceeds the maximum limit of 100 lines.' })
       return
     }
 
-    if (code.length > 3000) {
-      res.status(400).json({ error: 'Code exceeds the maximum limit of 3,000 characters.' })
+    if (code.length > 6000) {
+      res.status(400).json({ error: 'Code exceeds the maximum limit of 6,000 characters.' })
       return
     }
 

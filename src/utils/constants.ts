@@ -1,5 +1,5 @@
-export const MAX_CODE_LINES = 50
-export const MAX_CODE_CHARS = 3000
+export const MAX_CODE_LINES = 100
+export const MAX_CODE_CHARS = 6000
 
 export const API_BASE_URL = 'http://localhost:5201'
 

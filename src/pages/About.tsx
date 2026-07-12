@@ -37,7 +37,7 @@ export function About() {
         {[
           'Powered by Groq Cloud (llama-3.3-70b-versatile)',
           'Supports any programming language',
-          'Max 50 lines and 3,000 characters per request',
+          'Max 100 lines and 6,000 characters per request',
           'Rate-limited to 10 requests per minute',
           'Interactive 3D visualizations',
           'Sleek, modern dark-themed interface',

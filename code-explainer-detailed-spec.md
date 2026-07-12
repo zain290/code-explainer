@@ -17,10 +17,10 @@ This document outlines the complete architecture, implementation workflow, and c
 
 ### A. Input Restrictions (Token & Line Controls)
 To prevent API abuse, excessive token consumption, and rate-limiting issues, the system must enforce strict input bounds on both the frontend and the backend:
-1. **Line Limit:** Maximum **50 lines of code** per single request.
-2. **Character Limit:** Maximum **3,000 characters**.
+1. **Line Limit:** Maximum **100 lines of code** per single request.
+2. **Character Limit:** Maximum **6,000 characters**.
 3. **Validation Flow:** 
-   - **Frontend:** Disable the submit button and render an error badge if lines > 50 or characters > 3,000.
+   - **Frontend:** Disable the submit button and render an error badge if lines > 100 or characters > 6,000.
    - **Backend:** Validate the string input. If it fails the length/line rules, return a `400 Bad Request` status immediately without forwarding the request to Groq.
 
 ### B. High-Animation UI & 3D Component Integration
@@ -55,11 +55,11 @@ Adhering to a highly polished, clean, modern look with elegant appearing transit
    - **Line and Character Count Restrictions Check:**
      ```typescript
      const lineCount = code.split(/\r\n|\r|\n/).length;
-     if (lineCount > 50) {
-       return res.status(400).json({ error: "Code exceeds the maximum limit of 50 lines." });
-     }
-     if (code.length > 3000) {
-       return res.status(400).json({ error: "Code exceeds the maximum limit of 3,000 characters." });
+      if (lineCount > 100) {
+        return res.status(400).json({ error: "Code exceeds the maximum limit of 100 lines." });
+      }
+      if (code.length > 6000) {
+        return res.status(400).json({ error: "Code exceeds the maximum limit of 6,000 characters." });
      }
      ```
    - **Groq Cloud Fetch Invocation:** Send a direct payload to `https://api.groq.com/openai/v1/chat/completions` using a system prompt that enforces structural clarity:
@@ -83,7 +83,7 @@ Adhering to a highly polished, clean, modern look with elegant appearing transit
 
 1. **Input Terminal:**
    A sleek text area resembling an IDE terminal window, styled with Tailwind CSS (`bg-slate-900/80 backdrop-blur-md border border-slate-700/50 rounded-xl`).
-   - Real-time line count display indicator positioned in the bottom corner (`{lineCount}/50 lines`).
+   - Real-time line count display indicator positioned in the bottom corner (`{lineCount}/100 lines`).
 
 2. **Result Visualization:**
    A dedicated output pane utilizing markdown formatting for crisp code blocks and bullet points.
@@ -102,4 +102,4 @@ Adhering to a highly polished, clean, modern look with elegant appearing transit
 
 When pasting this into your developer AI agent, use the following execution prompt:
 
-> *"Generate a complete, production-ready full-stack setup using the specifications detailed above. Create a TypeScript Express backend verifying input counts strictly under 50 lines / 3000 chars, forwarding requests to the Groq Cloud endpoint. Create a gorgeous React frontend incorporating an interactive React Three Fiber floating element, reactive status styles, smooth Framer Motion appearing transitions, and complete error handling."*
+> *"Generate a complete, production-ready full-stack setup using the specifications detailed above. Create a TypeScript Express backend verifying input counts strictly under 100 lines / 6000 chars, forwarding requests to the Groq Cloud endpoint. Create a gorgeous React frontend incorporating an interactive React Three Fiber floating element, reactive status styles, smooth Framer Motion appearing transitions, and complete error handling."*
