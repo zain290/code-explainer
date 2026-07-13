@@ -4,7 +4,14 @@ import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 
 const app = express()
-const PORT = Number(process.env.PORT) || 5201
+const PORT = Number(process.env.PORT) || 5311
+const SITE_URL = process.env.SITE_URL || 'https://codeexplainer.app'
+
+const SITEMAP_ROUTES = [
+  { path: '/', priority: 1.0, changefreq: 'weekly' },
+  { path: '/about', priority: 0.8, changefreq: 'monthly' },
+  { path: '/contact', priority: 0.6, changefreq: 'monthly' },
+]
 
 app.use(cors({
   origin: [
@@ -101,6 +108,63 @@ app.post('/api/explain', async (req, res) => {
     console.error('Server error:', error)
     res.status(503).json({ error: 'Explanation service is temporarily unavailable.' })
   }
+})
+
+app.get('/sitemap.xml', (_req, res) => {
+  const urls = SITEMAP_ROUTES.map(
+    r => `  <url>
+    <loc>${SITE_URL}${r.path}</loc>
+    <priority>${r.priority.toFixed(1)}</priority>
+    <changefreq>${r.changefreq}</changefreq>
+  </url>`
+  ).join('\n')
+
+  res.header('Content-Type', 'application/xml')
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`)
+})
+
+app.get('/robots.txt', (_req, res) => {
+  res.header('Content-Type', 'text/plain')
+  res.send(`# CodeExplainer — robots.txt
+# Updated: July 2026
+
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`)
 })
 
 app.listen(PORT, () => {

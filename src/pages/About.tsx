@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { SEOHead } from '../components/seo/SEOHead'
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -8,7 +9,13 @@ const fadeIn = {
 
 export function About() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
+    <>
+      <SEOHead
+        title="About"
+        description="Learn about CodeExplainer — an AI-powered tool that helps developers understand code faster with clear, structured explanations using Groq Cloud API."
+        path="/about"
+      />
+      <div className="max-w-4xl mx-auto px-6 py-16">
       <motion.div {...fadeIn}>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
           About Code Explainer
@@ -49,5 +56,6 @@ export function About() {
         ))}
       </motion.div>
     </div>
+    </>
   )
 }

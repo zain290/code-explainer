@@ -10,6 +10,7 @@ import { json } from '@codemirror/lang-json'
 import { markdown } from '@codemirror/lang-markdown'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { SEOHead } from '../components/seo/SEOHead'
 import { TechLogosScene } from '../components/three/TechLogosScene'
 import { MagneticWrapper } from '../components/ui/MagneticWrapper'
 import { explainCode, type ExplainResponse } from '../services/api'
@@ -81,7 +82,13 @@ export function Home() {
   }
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEOHead
+        title="AI Code Explainer"
+        description="Paste any code and get a detailed, step-by-step AI-powered explanation with line-by-line breakdown and optimization analysis. Supports JavaScript, Python, HTML, CSS, and more."
+        path="/"
+      />
+      <div className="min-h-screen">
       <div className="relative w-full h-[500px]">
         <div className="absolute inset-0">
           <TechLogosScene isActive={explaining} />
@@ -208,5 +215,6 @@ export function Home() {
         </motion.div>
       </div>
     </div>
+    </>
   )
 }

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { MagneticWrapper } from '../components/ui/MagneticWrapper'
+import { SEOHead } from '../components/seo/SEOHead'
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -13,7 +14,13 @@ export function Contact() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
+    <>
+      <SEOHead
+        title="Contact"
+        description="Get in touch with the CodeExplainer team. Questions, suggestions, or feedback? We'd love to hear from you."
+        path="/contact"
+      />
+      <div className="max-w-4xl mx-auto px-6 py-16">
       <motion.div {...fadeIn}>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-indigo-400 bg-clip-text text-transparent">
           Get in Touch
@@ -68,5 +75,6 @@ export function Contact() {
         </motion.div>
       </div>
     </div>
+    </>
   )
 }
