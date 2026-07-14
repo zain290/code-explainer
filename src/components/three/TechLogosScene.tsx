@@ -8,9 +8,11 @@ interface TechLogosSceneProps {
   isActive?: boolean
 }
 
+const BASE = import.meta.env.BASE_URL
+
 const logos = [
   {
-    modelPath: '/models/node-transformed.glb',
+    modelPath: `${BASE}models/node-transformed.glb`,
     position: [0, 0, -1] as [number, number, number],
     scale: 7,
     rotation: [0.1, -Math.PI / 2, 0.1] as [number, number, number],
@@ -19,7 +21,7 @@ const logos = [
     rotationIntensity: 0.6,
   },
   {
-    modelPath: '/models/python-transformed.glb',
+    modelPath: `${BASE}models/python-transformed.glb`,
     position: [-7.5, 4, -2.5] as [number, number, number],
     scale: 0.5,
     rotation: [0.2, -0.3, 0.1] as [number, number, number],
@@ -28,7 +30,7 @@ const logos = [
     rotationIntensity: 1.5,
   },
   {
-    modelPath: '/models/git-svg-transformed.glb',
+    modelPath: `${BASE}models/git-svg-transformed.glb`,
     position: [7.5, 2.5, -2] as [number, number, number],
     scale: 0.035,
     rotation: [0.15, -Math.PI / 4, 0.2] as [number, number, number],
@@ -37,7 +39,7 @@ const logos = [
     rotationIntensity: 1.8,
   },
   {
-    modelPath: '/models/three.js-transformed.glb',
+    modelPath: `${BASE}models/three.js-transformed.glb`,
     position: [-6.5, -4.5, 2] as [number, number, number],
     scale: 0.025,
     rotation: [0.3, 0.5, 0.1] as [number, number, number],
@@ -46,7 +48,7 @@ const logos = [
     rotationIntensity: 2,
   },
   {
-    modelPath: '/models/react_logo-transformed.glb',
+    modelPath: `${BASE}models/react_logo-transformed.glb`,
     position: [6.5, -4, 1.5] as [number, number, number],
     scale: 0.7,
     rotation: [0, 0.2, 0.1] as [number, number, number],
