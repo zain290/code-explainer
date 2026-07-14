@@ -6,7 +6,7 @@ import { Contact } from './pages/Contact'
 
 export function App() {
   return (
-    <BrowserRouter basename="/codex">
+    <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
