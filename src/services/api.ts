@@ -9,11 +9,27 @@ export interface ExplainRequest {
 export interface ExplainResponse {
   explanation: string
   tokensUsed: number
+  remaining?: number
+  limit?: number
+}
+
+function getDeviceId(): string {
+  let id = localStorage.getItem('codex_device_id')
+  if (!id) {
+    id = crypto.randomUUID()
+    localStorage.setItem('codex_device_id', id)
+  }
+  return id
 }
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,
+})
+
+api.interceptors.request.use((config) => {
+  config.headers.set('X-Device-Id', getDeviceId())
+  return config
 })
 
 export async function explainCode(data: ExplainRequest): Promise<ExplainResponse> {

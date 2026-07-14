@@ -6,6 +6,7 @@ import rateLimit from 'express-rate-limit'
 const app = express()
 const PORT = Number(process.env.PORT) || 5311
 const SITE_URL = process.env.SITE_URL || 'https://codeexplainer.app'
+const RATE_LIMIT_PER_HOUR = Number(process.env.RATE_LIMIT_PER_HOUR) || 3
 
 const SITEMAP_ROUTES = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
@@ -24,7 +25,7 @@ app.use(cors({
 
 app.use(express.json({ limit: '1mb' }))
 
-const limiter = rateLimit({
+const burstLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 10,
   message: { error: 'Too many requests. Please wait before trying again.' },
@@ -32,7 +33,21 @@ const limiter = rateLimit({
   legacyHeaders: false,
 })
 
-app.use('/api', limiter)
+const hourlyLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: RATE_LIMIT_PER_HOUR,
+  keyGenerator: (req) => {
+    const ip = req.ip || req.socket.remoteAddress || 'unknown'
+    const deviceId = req.headers['x-device-id'] as string | undefined
+    return deviceId ? `${ip}|${deviceId}` : ip
+  },
+  message: { error: `Rate limit exceeded. ${RATE_LIMIT_PER_HOUR} explanations per hour allowed. Please try again later.` },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+
+app.use('/api', burstLimiter)
+app.use('/api/explain', hourlyLimiter)
 
 app.post('/api/explain', async (req, res) => {
   try {
@@ -103,7 +118,7 @@ app.post('/api/explain', async (req, res) => {
       return
     }
 
-    res.json({ explanation, tokensUsed })
+    res.json({ explanation, tokensUsed, remaining: req.rateLimit?.remaining ?? 0, limit: RATE_LIMIT_PER_HOUR })
   } catch (error) {
     console.error('Server error:', error)
     res.status(503).json({ error: 'Explanation service is temporarily unavailable.' })
