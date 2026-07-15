@@ -1,4 +1,4 @@
-# CodeExplainer — robots.txt
+# Codex — robots.txt
 # Updated: July 2026
 
 # --- Global: allow all standard search crawlers ---

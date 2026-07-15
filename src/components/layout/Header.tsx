@@ -17,8 +17,8 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/80 backdrop-blur-md border-b border-slate-800/50">
       <nav className="max-w-5xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
-        <Link to={ROUTES.home} className="text-lg font-bold text-indigo-400" aria-label="CodeExplainer home">
-          CodeExplainer
+        <Link to={ROUTES.home} className="text-lg font-bold text-indigo-400" aria-label="Codex home">
+Codex
         </Link>
         
         {/* Desktop Nav */}

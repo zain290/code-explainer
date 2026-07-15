@@ -144,7 +144,7 @@ ${urls}
 
 app.get('/robots.txt', (_req, res) => {
   res.header('Content-Type', 'text/plain')
-  res.send(`# CodeExplainer — robots.txt
+  res.send(`# Codex — robots.txt
 # Updated: July 2026
 
 User-agent: *

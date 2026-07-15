@@ -84,8 +84,8 @@ export function Home() {
   return (
     <>
       <SEOHead
-        title="AI Code Explainer"
-        description="Paste any code and get a detailed, step-by-step AI-powered explanation with line-by-line breakdown and optimization analysis. Supports JavaScript, Python, HTML, CSS, and more."
+        title="AI Codex"
+        description="Codex — paste any code and get a detailed, step-by-step AI-powered explanation with line-by-line breakdown and optimization analysis. Supports JavaScript, Python, HTML, CSS, and more."
         path="/"
       />
       <div className="min-h-screen">
@@ -100,7 +100,7 @@ export function Home() {
         <motion.div {...fadeIn}>
           <div className="text-center mb-10">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent">
-              Code Explainer
+              Codex
             </h1>
             <p className="text-slate-400 text-lg max-w-xl mx-auto">
               Paste your code below and get a detailed, step-by-step explanation powered by AI.

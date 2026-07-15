@@ -17,7 +17,7 @@ export function Contact() {
     <>
       <SEOHead
         title="Contact"
-        description="Get in touch with the CodeExplainer team. Questions, suggestions, or feedback? We'd love to hear from you."
+        description="Get in touch with the Codex team. Questions, suggestions, or feedback? We'd love to hear from you."
         path="/contact"
       />
       <div className="max-w-4xl mx-auto px-6 py-16">
@@ -65,8 +65,8 @@ export function Contact() {
           className="bg-slate-900/60 border border-slate-800/50 rounded-xl p-6 text-sm text-slate-400 leading-relaxed space-y-4"
         >
           <p>
-            This project is built with React, Three.js, and the Groq Cloud API.
-            The source code is available for review and contributions.
+            Codex is an open-source project built with modern web technologies and
+            high-end AI language models. We welcome contributions and feedback from the community.
           </p>
           <p>
             For support inquiries, please describe the issue you&apos;re experiencing

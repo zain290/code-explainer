@@ -7,4 +7,6 @@ export const ROUTES = {
   home: '/',
   about: '/about',
   contact: '/contact',
+  privacyPolicy: '/privacy-policy',
+  terms: '/terms',
 } as const
