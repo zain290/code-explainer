@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
 const SITE_NAME = 'CodeExplainer'
-const SITE_URL = 'https://codeexplainer.app'
+const SITE_URL = 'https://codex.zemz.pro'
 const DEFAULT_DESC = 'AI-powered code explanation tool. Paste any code and get a detailed step-by-step explanation with line-by-line breakdown and optimization analysis.'
 const DEFAULT_IMAGE = '/og-image.png'
 

@@ -1,14 +1,22 @@
 import { useRef, useMemo } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
 interface CodeMesh3DProps {
   isActive?: boolean
 }
 
+function getResponsiveScale(width: number) {
+  if (width < 640) return 0.6 // Mobile
+  if (width < 1024) return 0.8 // Tablet
+  return 1 // PC
+}
+
 function MeshScene({ isActive = false }: { isActive: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null)
   const particlesRef = useRef<THREE.Points>(null)
+  const { size } = useThree()
+  const scale = getResponsiveScale(size.width)
 
   const particlePositions = useMemo(() => {
     const count = 600
@@ -47,27 +55,29 @@ function MeshScene({ isActive = false }: { isActive: boolean }) {
       <directionalLight position={[5, 5, 5]} intensity={0.6} />
       <directionalLight position={[-5, -5, -5]} intensity={0.2} />
 
-      <mesh ref={meshRef}>
-        <torusKnotGeometry args={[1.2, 0.4, 180, 24]} />
-        <meshPhysicalMaterial
-          color={targetColor}
-          emissive={emissiveColor}
-          emissiveIntensity={isActive ? 0.4 : 0.15}
-          metalness={0.7}
-          roughness={0.2}
-          clearcoat={0.3}
-        />
-      </mesh>
+      <group scale={scale}>
+        <mesh ref={meshRef}>
+          <torusKnotGeometry args={[1.2, 0.4, 180, 24]} />
+          <meshPhysicalMaterial
+            color={targetColor}
+            emissive={emissiveColor}
+            emissiveIntensity={isActive ? 0.4 : 0.15}
+            metalness={0.7}
+            roughness={0.2}
+            clearcoat={0.3}
+          />
+        </mesh>
 
-      <points ref={particlesRef} geometry={particleGeo}>
-        <pointsMaterial
-          size={0.025}
-          color={isActive ? '#22d3ee' : '#6366f1'}
-          transparent
-          opacity={0.5}
-          sizeAttenuation
-        />
-      </points>
+        <points ref={particlesRef} geometry={particleGeo}>
+          <pointsMaterial
+            size={0.025}
+            color={isActive ? '#22d3ee' : '#6366f1'}
+            transparent
+            opacity={0.5}
+            sizeAttenuation
+          />
+        </points>
+      </group>
     </>
   )
 }

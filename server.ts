@@ -5,7 +5,7 @@ import rateLimit from 'express-rate-limit'
 
 const app = express()
 const PORT = Number(process.env.PORT) || 5311
-const SITE_URL = process.env.SITE_URL || 'https://codeexplainer.app'
+const SITE_URL = process.env.SITE_URL || 'https://codex.zemz.pro'
 const RATE_LIMIT_PER_HOUR = Number(process.env.RATE_LIMIT_PER_HOUR) || 3
 
 const SITEMAP_ROUTES = [
@@ -19,6 +19,7 @@ app.use(cors({
     'http://localhost:5200',
     'http://localhost:4173',
     'https://zemz.pro',
+    'https://codex.zemz.pro',
   ],
   methods: ['POST', 'GET'],
 }))

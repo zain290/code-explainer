@@ -37,4 +37,4 @@ User-agent: PerplexityBot
 Allow: /
 
 # Sitemap
-Sitemap: https://codeexplainer.app/sitemap.xml
+Sitemap: https://codex.zemz.pro/sitemap.xml

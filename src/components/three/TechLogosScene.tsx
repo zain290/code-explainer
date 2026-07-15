@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Environment, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 import { TechLogo } from './TechLogo'
@@ -93,7 +93,16 @@ function ParticleField() {
   )
 }
 
+function getResponsiveValues(width: number) {
+  if (width < 640) return { scaleMultiplier: 0.45, posMultiplier: 0.4 } // Mobile
+  if (width < 1024) return { scaleMultiplier: 0.7, posMultiplier: 0.7 } // Tablet
+  return { scaleMultiplier: 1, posMultiplier: 1 } // PC
+}
+
 function SceneContent({ isActive }: { isActive: boolean }) {
+  const { size } = useThree()
+  const { scaleMultiplier, posMultiplier } = getResponsiveValues(size.width)
+
   return (
     <>
       <ambientLight intensity={0.3} />
@@ -107,8 +116,12 @@ function SceneContent({ isActive }: { isActive: boolean }) {
         <TechLogo
           key={i}
           modelPath={logo.modelPath}
-          position={logo.position}
-          scale={logo.scale}
+          position={[
+            logo.position[0] * posMultiplier,
+            logo.position[1] * posMultiplier,
+            logo.position[2] * posMultiplier,
+          ]}
+          scale={logo.scale * scaleMultiplier}
           rotation={logo.rotation}
           floatSpeed={logo.floatSpeed}
           floatIntensity={logo.floatIntensity}
