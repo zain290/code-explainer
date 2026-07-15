@@ -12,6 +12,8 @@ const SITEMAP_ROUTES = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
   { path: '/about', priority: 0.8, changefreq: 'monthly' },
   { path: '/contact', priority: 0.6, changefreq: 'monthly' },
+  { path: '/privacy-policy', priority: 0.5, changefreq: 'yearly' },
+  { path: '/terms', priority: 0.5, changefreq: 'yearly' },
 ]
 
 app.use(cors({
