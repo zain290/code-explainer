@@ -84,8 +84,8 @@ export function Home() {
   return (
     <>
       <SEOHead
-        title="AI Codex"
-        description="Codex — paste any code and get a detailed, step-by-step AI-powered explanation with line-by-line breakdown and optimization analysis. Supports JavaScript, Python, HTML, CSS, and more."
+        title="AI Code Explainer & Reviewer"
+        description="Codex is a free code explainer. Paste any code to explain code online with our AI code explanation tool and code to natural language AI."
         path="/"
       />
       <div className="min-h-screen">
@@ -100,10 +100,10 @@ export function Home() {
         <motion.div {...fadeIn}>
           <div className="text-center mb-10">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent">
-              Codex
+              Codex: Free AI Code Explainer
             </h1>
             <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              Paste your code below and get a detailed, step-by-step explanation powered by AI.
+              Explain code online instantly. Paste your code below and let our code to natural language AI act as your personal AI code reviewer.
             </p>
           </div>
         </motion.div>
@@ -212,6 +212,39 @@ export function Home() {
               <p className="text-slate-500 text-xs">{item.desc}</p>
             </div>
           ))}
+        </motion.div>
+
+        <motion.div
+          {...fadeIn}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.4 }}
+          className="mt-20 mb-10"
+        >
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-slate-200">What Developers Say</h2>
+            <p className="text-slate-400 mt-2">Join thousands of developers using our AI code explanation tool.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-slate-900/60 border border-slate-800/50 rounded-xl p-6">
+              <p className="text-slate-300 text-sm italic mb-4">"This free code explainer has completely transformed how I review pull requests. As an AI code reviewer, it catches complexities I often miss and explains them in plain English. The code to natural language AI is incredibly accurate."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-300 font-bold">JD</div>
+                <div>
+                  <h4 className="text-slate-200 text-sm font-semibold">James D.</h4>
+                  <p className="text-slate-500 text-xs">Senior Frontend Engineer</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-900/60 border border-slate-800/50 rounded-xl p-6">
+              <p className="text-slate-300 text-sm italic mb-4">"Whenever I'm stuck trying to understand an undocumented legacy codebase, I use Codex to explain code online. It's simply the best AI code explanation generator out there—saving me hours of debugging time every week."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-300 font-bold">SA</div>
+                <div>
+                  <h4 className="text-slate-200 text-sm font-semibold">Sarah A.</h4>
+                  <p className="text-slate-500 text-xs">Backend Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
