@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
 import rateLimit from 'express-rate-limit'
 
 const app = express()
@@ -151,8 +152,6 @@ app.get('/robots.txt', (_req, res) => {
 
 User-agent: *
 Allow: /
-Disallow: /wp-admin/
-Allow: /wp-admin/admin-ajax.php
 
 User-agent: Bytespider
 Disallow: /
@@ -183,6 +182,13 @@ Allow: /
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `)
+})
+
+const distPath = path.resolve(process.cwd(), 'dist')
+app.use(express.static(distPath))
+
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'))
 })
 
 app.listen(PORT, () => {

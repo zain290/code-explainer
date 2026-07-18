@@ -9,6 +9,56 @@ const fadeIn = {
   transition: { duration: 0.5, ease: 'easeOut' as const },
 }
 
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Codex - AI Code Explainer',
+  description: 'Learn about Codex, a free code explanation generator that helps developers understand code faster.',
+  mainContentOfPage: {
+    '@type': 'WebPageElement',
+    about: 'AI-powered code explanation tool and code to natural language AI.',
+  },
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is this AI code explanation tool free?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, Codex offers a free code explainer tier for developers to understand snippets quickly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the code to natural language AI work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our engine uses state-of-the-art LLMs trained on vast amounts of code to act as an AI code reviewer, breaking down complex logic into easily understandable text.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use it to explain code online in any language?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Codex supports almost all popular programming languages including JavaScript, Python, TypeScript, HTML, CSS, C++, and more.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my code kept private?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We do not store the code you paste for explanations. It is only processed in real-time to generate your answer.',
+      },
+    },
+  ],
+}
+
 export function About() {
   return (
     <>
@@ -16,6 +66,7 @@ export function About() {
         title="About our AI Code Explainer Tool"
         description="Learn about Codex — an AI code explanation tool and code explanation generator that helps developers understand code faster with our code to natural language AI."
         path="/about"
+        schemaMarkup={JSON.stringify([aboutSchema, faqSchema])}
       />
       <div className="max-w-4xl mx-auto px-6 py-16">
       <motion.div {...fadeIn}>

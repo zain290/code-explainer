@@ -41,6 +41,37 @@ function getLanguageExt(language: string) {
   return languageExtensions[key] || javascript()
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Codex',
+  url: 'https://codex.zemz.pro',
+  description: 'Free AI code explanation tool and AI code reviewer. Explain code online with code to natural language AI.',
+  logo: 'https://codex.zemz.pro/circle.svg',
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Codex',
+  url: 'https://codex.zemz.pro',
+  description: 'Free AI code explainer that converts code to natural language. Get instant step-by-step code explanations.',
+}
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Codex - AI Code Explainer',
+  url: 'https://codex.zemz.pro',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'All',
+  description: 'Paste any code and get a detailed AI-powered explanation with line-by-line breakdown and optimization analysis.',
+}
+
+const schemas = [organizationSchema, websiteSchema, webAppSchema]
+  .map(s => JSON.stringify(s))
+  .join(',')
+
 export function Home() {
   const [code, setCode] = useState('')
   const [language, setLanguage] = useState('')
@@ -87,6 +118,7 @@ export function Home() {
         title="AI Code Explainer & Reviewer"
         description="Codex is a free code explainer. Paste any code to explain code online with our AI code explanation tool and code to natural language AI."
         path="/"
+        schemaMarkup={`[${schemas}]`}
       />
       <div className="min-h-screen">
       <div className="relative w-full h-[500px]">
